@@ -7,7 +7,7 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 def summarize(text):
     response = client.chat.completions.create(
-        model="gpt-40-mini",
+        model="gpt-4o-mini",
         messages=[
             {"role": "system", "content": "You are a summarizer. Give a concise summary in bullet points. Max 5 points."},
             {"role": "user", "content": text}
