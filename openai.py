@@ -17,9 +17,22 @@ def summarize(text):
 
 def translate(text,language):
     response = client.chat.completions.create(
-        model = "gpt-40-mini",
+        model = "gpt-4o-mini",
         messages = [
             {"role": "system", "content": f"You are a translator. Translate the following text to {language}."},
+            {"role": "user", "content": text}
+        ]
+    )
+    return response.choices[0].message.content
+
+def sentiment(text):
+    response = client.chat.completions.create(
+        model = "gpt-4o-mini",
+        messages = [
+            {"role": "system", "content": """You are a sentiment analyzer. Analyze the sentiment and return in this exact format:
+Sentiment: [POSITIVE/NEGATIVE/NEUTRAL]
+Confidence: [HIGH/MEDIUM/LOW]
+Reason: one line explanation""" },
             {"role": "user", "content": text}
         ]
     )
